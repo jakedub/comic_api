@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  cover_type: MyString
+  price: 9.99
+  comic_issue_id: 
+
+two:
+  description: MyString
+  cover_type: MyString
+  price: 9.99
+  comic_issue_id: 

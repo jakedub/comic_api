@@ -1,0 +1,2 @@
+class TagsVariant < ApplicationRecord
+end
