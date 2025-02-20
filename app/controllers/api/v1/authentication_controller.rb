@@ -5,7 +5,7 @@ module Api
         @user = User.find_by(email: params[:email])
 
         if @user && @user.authenticate(params[:password])
-          token = encode_token(user_id: @user.id)
+          token = encode_token(user_id: @user.id, admin: @user.admin?)
           render json: { token: token }
         else
           render json: { error: "Invalid credentials" }, status: :unauthorized

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_20_141044) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_20_174353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,21 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_20_141044) do
     t.bigint "comic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "creator_roles", force: :cascade do |t|
+    t.bigint "creator_id"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_creator_roles_on_creator_id"
+  end
+
+  create_table "creator_roles_creators", id: false, force: :cascade do |t|
+    t.bigint "creator_id", null: false
+    t.bigint "creator_role_id", null: false
+    t.index ["creator_id"], name: "index_creator_roles_creators_on_creator_id"
+    t.index ["creator_role_id"], name: "index_creator_roles_creators_on_creator_role_id"
   end
 
   create_table "creators", force: :cascade do |t|
@@ -144,4 +159,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_20_141044) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "creator_roles", "creators"
 end
